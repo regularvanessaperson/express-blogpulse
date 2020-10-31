@@ -1,4 +1,7 @@
 'use strict'
+
+const comment = require("./comment")
+
 module.exports = (sequelize, DataTypes) => {
   const article = sequelize.define('article', {
     title: DataTypes.STRING,
@@ -8,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   article.associate = function(models) {
     // associations can be defined here
     models.article.belongsTo(models.author)
+    models.article.hasMany(models.comment)
   }
   return article
 }
